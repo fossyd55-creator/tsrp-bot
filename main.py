@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Bot(commands.Bot):
     def __init__(self):
@@ -31,7 +34,8 @@ async def on_ready():
 async def main():
     """Main function to start the bot"""
     await load_cogs()
-    await bot.start("YOUR_BOT_TOKEN_HERE")
+    TOKEN = os.getenv("DISCORD_TOKEN")
+    await bot.start(TOKEN)
 
 if __name__ == "__main__":
     import asyncio
